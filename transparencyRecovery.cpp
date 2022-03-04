@@ -75,7 +75,7 @@ int main(int argc, char *argv[]){
 	}
 
 	//data setup for mainloop
-	char* rData = new char[size]; //create new data block
+	char* rData = new char[wWidth * wHeight * 4 + 18]; //create new data block
 	for (unsigned char i = 0; i < 18; i++){ //header copy
 		rData[i] = wData[i];
 	}
@@ -111,11 +111,11 @@ int main(int argc, char *argv[]){
 				rData[i * 4 + ii + 18] = 0;
 			}
 		}
-		rData[i * subpixels + 21] = pixelOpacity;
+		rData[i * 4 + 21] = pixelOpacity;
 	}	
 	//write
 	ofstream fileOutputResult(fileResult, ios::out|ios::binary);
-	fileOutputResult.write(rData, size);
+	fileOutputResult.write(rData, wWidth * wHeight * 4 + 18);
 	fileOutputResult.close();
 	cout << "Finished\n";
 	return 0;

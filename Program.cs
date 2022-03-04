@@ -77,7 +77,7 @@ class Program {
 					rData[i * 4 + ii + 18] = 0;
 				}
 			}
-			rData[i * subpixels + 21] = pixelOpacity;
+			rData[i * 4 + 21] = pixelOpacity;
 		}
 		//write
 		File.WriteAllBytes(fileOutput, rData);

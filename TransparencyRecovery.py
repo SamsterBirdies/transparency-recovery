@@ -49,7 +49,7 @@ if wHeaderDepth != 24 and wHeaderDepth != 32:
 	exit(0)
 	
 #data setup
-rData = bytearray(len(wData))
+rData = bytearray(wHeaderWidth * wHeaderHeight * 4 + 18)
 for i in range(18):
 	rData[i] = wData[i]
 rData[16] = 32
@@ -75,7 +75,7 @@ for i in range(wHeaderWidth * wHeaderHeight):
 			rData[i * 4 + ii + 18] = subpix;
 		else:
 			rData[i * 4 + ii + 18] = 0;
-	rData[i * subpixels + 21] = pixelOpacity
+	rData[i * 4 + 21] = pixelOpacity
 #write to file
 with open(fileResult,'wb') as file:
 	file.write(rData)
